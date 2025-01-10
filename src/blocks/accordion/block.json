@@ -9,6 +9,10 @@
   "description": "Example accordion block scaffolded with Create Block tool.",
   "example": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Accordion Title"
+    },
     "content": {
       "type": "string",
       "source": "html",

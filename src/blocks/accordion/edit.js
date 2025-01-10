@@ -33,7 +33,7 @@ import "./editor.scss"
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit({ attributes, setAttributes }) {
   return (
     <>
       <InspectorControls>
@@ -42,12 +42,15 @@ export default function Edit() {
             __nextHasNoMarginBottom
             __next40pxDefaultSize
             label="Additional CSS Class"
-            value={"test"}
-            onChange={value => console.log("component")}
+            value={attributes.title}
+            onChange={value => setAttributes({ title: value })}
           />
         </PanelBody>
       </InspectorControls>
-      <p {...useBlockProps()}>{__("Accordion – hello from the editor!", "accordion")}</p>
+      <p {...useBlockProps()}>
+        {attributes.title && attributes.title}
+        {__("Accordion – hello from the editor!", "accordion")}
+      </p>
     </>
   )
 }

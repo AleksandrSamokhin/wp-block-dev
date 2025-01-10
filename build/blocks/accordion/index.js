@@ -55,7 +55,10 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} Element to render.
  */
 
-function Edit() {
+function Edit({
+  attributes,
+  setAttributes
+}) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
@@ -64,13 +67,15 @@ function Edit() {
           __nextHasNoMarginBottom: true,
           __next40pxDefaultSize: true,
           label: "Additional CSS Class",
-          value: "test",
-          onChange: value => console.log("component")
+          value: attributes.title,
+          onChange: value => setAttributes({
+            title: value
+          })
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Accordion – hello from the editor!", "accordion")
+      children: [attributes.title && attributes.title, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Accordion – hello from the editor!", "accordion")]
     })]
   });
 }
@@ -167,7 +172,7 @@ __webpack_require__.r(__webpack_exports__);
 function save() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
-    children: 'Accordion – hello from the saved content!'
+    children: "Accordion – hello from the saved content!"
   });
 }
 
@@ -253,7 +258,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wp-block-dev/accordion","version":"0.1.0","title":"Accordion","category":"wp-block-dev-category","icon":"align-wide","description":"Example accordion block scaffolded with Create Block tool.","example":{},"attributes":{"content":{"type":"string","source":"html","selector":".accordion-content"},"isOpen":{"type":"boolean","default":false}},"supports":{"html":false},"textdomain":"accordion","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wp-block-dev/accordion","version":"0.1.0","title":"Accordion","category":"wp-block-dev-category","icon":"align-wide","description":"Example accordion block scaffolded with Create Block tool.","example":{},"attributes":{"title":{"type":"string","default":"Accordion Title"},"content":{"type":"string","source":"html","selector":".accordion-content"},"isOpen":{"type":"boolean","default":false}},"supports":{"html":false},"textdomain":"accordion","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

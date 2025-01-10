@@ -5,7 +5,9 @@
  */
 import { __ } from "@wordpress/i18n"
 
-import { TextControl } from "@wordpress/components"
+import { TextControl, PanelBody } from "@wordpress/components"
+
+import { InspectorControls } from "@wordpress/block-editor"
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -34,13 +36,17 @@ import "./editor.scss"
 export default function Edit() {
   return (
     <>
-      <TextControl
-        __nextHasNoMarginBottom
-        __next40pxDefaultSize
-        label="Additional CSS Class"
-        value={"test"}
-        onChange={value => console.log("component")}
-      />
+      <InspectorControls>
+        <PanelBody title={__("Inspector settings", "wp-block-dev")}>
+          <TextControl
+            __nextHasNoMarginBottom
+            __next40pxDefaultSize
+            label="Additional CSS Class"
+            value={"test"}
+            onChange={value => console.log("component")}
+          />
+        </PanelBody>
+      </InspectorControls>
       <p {...useBlockProps()}>{__("Accordion – hello from the editor!", "accordion")}</p>
     </>
   )

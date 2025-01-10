@@ -128,11 +128,12 @@ console.log();
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"]
+
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  // save
 });
 
 /***/ }),
@@ -260,7 +261,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wp-block-dev/accordion","version":"0.1.0","title":"Accordion","category":"wp-block-dev-category","icon":"align-wide","description":"Example accordion block scaffolded with Create Block tool.","example":{},"attributes":{"title":{"type":"string","default":"Accordion Title"},"content":{"type":"string","source":"html","selector":".accordion-content"},"isOpen":{"type":"boolean","default":false}},"supports":{"html":false},"textdomain":"accordion","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wp-block-dev/accordion","version":"0.1.0","title":"Accordion","category":"wp-block-dev-category","icon":"align-wide","description":"Example accordion block scaffolded with Create Block tool.","example":{},"attributes":{"title":{"type":"string","default":"Accordion Title"},"content":{"type":"string","source":"html","selector":".accordion-content"},"isOpen":{"type":"boolean","default":false}},"supports":{"html":false},"textdomain":"accordion","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 

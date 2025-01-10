@@ -15,6 +15,11 @@ import { useBlockProps } from "@wordpress/block-editor"
  *
  * @return {Element} Element to render.
  */
-export default function save() {
-  return <p {...useBlockProps.save()}>{"Accordion – hello from the saved content!"}</p>
+export default function save({ attributes }) {
+  return (
+    <p {...useBlockProps.save()}>
+      {attributes.title && attributes.title}
+      {"Accordion – hello from the saved content!"}
+    </p>
+  )
 }

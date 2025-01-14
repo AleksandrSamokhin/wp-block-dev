@@ -1,17 +1,38 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "create-block/slider",
+  "name": "wp-block-dev/slider",
   "version": "0.1.0",
   "title": "Slider",
-  "category": "widgets",
-  "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "category": "wp-block-dev-category",
+  "description": "Simple slider block.",
   "example": {},
+  "attributes": {
+    "sliderPerView": {
+      "type": "number",
+      "default": 3
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "loop": {
+      "type": "boolean",
+      "default": false
+    },
+    "pagination": {
+      "type": "boolean",
+      "default": false
+    },
+    "navigation": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "supports": {
     "html": false
   },
-  "textdomain": "slider",
+  "textdomain": "wp-block-dev",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",

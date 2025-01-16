@@ -61,12 +61,47 @@ export default function Edit(props) {
   })
 
   const getSlide = function (text = "") {
-    return ["wp-block-dev/slide", {}, []]
+    return [
+      "wp-block-dev/slide",
+      {},
+      [
+        [
+          "core/group",
+          {
+            style: {
+              spacing: {
+                padding: {
+                  top: "40px",
+                  bottom: "40px",
+                  left: "40px",
+                  right: "40px"
+                }
+              },
+              border: {
+                width: "1px"
+              }
+            },
+            layout: {
+              type: "constrained"
+            }
+          },
+          [
+            [
+              "core/paragraph",
+              {
+                className: "wp-block-dev-slide__text",
+                content: __(text, "wp-block-dev")
+              }
+            ]
+          ]
+        ]
+      ]
+    ]
   }
 
   const innerBlockProps = useInnerBlocksProps(blockProps, {
     allowedBlocks: ["wp-block-dev/slide"],
-    template: [getSlide(), getSlide()]
+    template: [getSlide("Slide 1 text"), getSlide("Slide 2 text"), getSlide("Slide 3 text")]
   })
 
   return (

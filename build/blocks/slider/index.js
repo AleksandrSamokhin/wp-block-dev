@@ -95,11 +95,31 @@ function Edit(props) {
     })
   });
   const getSlide = function (text = "") {
-    return ["wp-block-dev/slide", {}, []];
+    return ["wp-block-dev/slide", {}, [["core/group", {
+      style: {
+        spacing: {
+          padding: {
+            top: "40px",
+            bottom: "40px",
+            left: "40px",
+            right: "40px"
+          }
+        },
+        border: {
+          width: "1px"
+        }
+      },
+      layout: {
+        type: "constrained"
+      }
+    }, [["core/paragraph", {
+      className: "wp-block-dev-slide__text",
+      content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)(text, "wp-block-dev")
+    }]]]]];
   };
   const innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useInnerBlocksProps)(blockProps, {
     allowedBlocks: ["wp-block-dev/slide"],
-    template: [getSlide(), getSlide()]
+    template: [getSlide("Slide 1 text"), getSlide("Slide 2 text"), getSlide("Slide 3 text")]
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [inspectorControls, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {

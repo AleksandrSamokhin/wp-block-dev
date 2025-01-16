@@ -8,7 +8,7 @@
   "description": "Simple slider block.",
   "example": {},
   "attributes": {
-    "sliderPerView": {
+    "slidesPerView": {
       "type": "number",
       "default": 3
     },

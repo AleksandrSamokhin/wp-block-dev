@@ -1,10 +1,4 @@
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
 
 /**
  * The save function defines the way in which the different attributes should
@@ -16,9 +10,17 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {Element} Element to render.
  */
 export default function save() {
-	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Slide – hello from the saved content!' }
-		</p>
-	);
+  const blockProps = useBlockProps.save({
+    className: "swiper-slide"
+  })
+
+  return (
+    <div {...blockProps}>
+      <div className="wp-block-dev-slider__container">
+        <div className="wp-block-dev-slider__content">
+          <InnerBlocks.Content />
+        </div>
+      </div>
+    </div>
+  )
 }

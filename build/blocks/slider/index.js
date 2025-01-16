@@ -94,9 +94,16 @@ function Edit(props) {
       [`wp-block-dev-slider--slides-${slidesPerView}`]: slidesPerView
     })
   });
+  const getSlide = function (text = "") {
+    return ["wp-block-dev/slide", {}, []];
+  };
+  const innerBlockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useInnerBlocksProps)(blockProps, {
+    allowedBlocks: ["wp-block-dev/slide"],
+    template: [getSlide(), getSlide()]
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [inspectorControls, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      ...blockProps
+      ...innerBlockProps
     })]
   });
 }

@@ -3,7 +3,7 @@ import "./editor.scss"
 import classnames from "classnames"
 
 import { __ } from "@wordpress/i18n"
-import { useBlockProps, InspectorControls } from "@wordpress/block-editor"
+import { useBlockProps, useInnerBlocksProps, InspectorControls } from "@wordpress/block-editor"
 
 import { PanelBody, ToggleControl, RangeControl } from "@wordpress/components"
 
@@ -60,10 +60,19 @@ export default function Edit(props) {
     })
   })
 
+  const getSlide = function (text = "") {
+    return ["wp-block-dev/slide", {}, []]
+  }
+
+  const innerBlockProps = useInnerBlocksProps(blockProps, {
+    allowedBlocks: ["wp-block-dev/slide"],
+    template: [getSlide(), getSlide()]
+  })
+
   return (
     <>
       {inspectorControls}
-      <div {...blockProps} />
+      <div {...innerBlockProps} />
     </>
   )
 }

@@ -9,16 +9,35 @@ import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
+  const { slidesPerView, autoplay, loop, pagination, navigation } = attributes
+
   const blockProps = useBlockProps.save({
     className: "wp-block-dev-slider swiper"
   })
 
+  const swiperOptions = {
+    slidesPerView,
+    autoplay,
+    loop,
+    pagination,
+    navigation
+  }
+
   return (
-    <div {...blockProps}>
+    <div {...blockProps} data-swiper-options={JSON.stringify(swiperOptions)}>
       <div className="swiper-wrapper">
         <InnerBlocks.Content />
       </div>
+
+      {pagination && <div className="swiper-pagination"></div>}
+
+      {navigation && (
+        <>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </>
+      )}
     </div>
   )
 }

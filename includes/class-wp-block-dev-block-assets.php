@@ -69,7 +69,7 @@ class WPBlockDev_Block_Assets {
 			return $block_content;
 		}
 
-		if ( 'wp-block-dev/accordion' === $block['blockName'] ) {
+		if ( 'wp-block-dev/slider' === $block['blockName'] ) {
 			$asset_file = $this->get_asset_file( 'build/js/swiper/index' );
 			wp_enqueue_script(
 				'wp-block-dev-swiper',

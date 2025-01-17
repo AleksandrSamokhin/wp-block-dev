@@ -30,6 +30,13 @@
     }
   },
   "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true
+    },
     "html": false
   },
   "textdomain": "wp-block-dev",

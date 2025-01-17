@@ -1,5 +1,5 @@
 // Variables & Mixins
-@import "../../../assets/css/base/_mixins.scss";
+@use "../../../assets/css/base/_mixins.scss" as *;
 
 .wp-block-dev-slider {
   padding: 24px;

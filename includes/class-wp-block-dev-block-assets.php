@@ -78,6 +78,9 @@ class WPBlockDev_Block_Assets {
 				$asset_file['version'],
 				true
 			);
+
+			wp_enqueue_style( 'wp-block-dev-swiper', WP_BLOCK_DEV_PLUGIN_URL . 'build/js/swiper/index.css', array(), $asset_file['version'] );
+
 		}
 
 		return $block_content;

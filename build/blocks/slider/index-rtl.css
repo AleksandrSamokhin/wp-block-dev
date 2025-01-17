@@ -1,11 +1,31 @@
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/slider/editor.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************/
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.wp-block-create-block-slider {
-  border: 1px dotted #f00;
+.wp-block-dev-slider {
+  padding: 24px;
+  display: grid;
+  box-sizing: border-box;
+  gap: 30px;
+  border: 1px dotted #ebebeb;
+}
+@media only screen and (min-width: 782px) {
+  .wp-block-dev-slider--slides-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .wp-block-dev-slider--slides-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .wp-block-dev-slider--slides-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .wp-block-dev-slider--slides-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .wp-block-dev-slider--slides-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.wp-block-dev-slide {
+  flex: 1 0 0;
 }

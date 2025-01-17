@@ -1,9 +1,36 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+// Variables & Mixins
+@import "../../../assets/css/base/_mixins.scss";
 
-.wp-block-create-block-slider {
-	border: 1px dotted #f00;
+.wp-block-dev-slider {
+  padding: 24px;
+  display: grid;
+  box-sizing: border-box;
+  gap: 30px;
+  border: 1px dotted #ebebeb;
+
+  @include bp-md-up {
+    &--slides-6 {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    &--slides-5 {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    &--slides-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    &--slides-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    &--slides-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+.wp-block-dev-slide {
+  flex: 1 0 0;
 }

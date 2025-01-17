@@ -1,16 +1,40 @@
 /*!*****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/slider/style.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************/
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.wp-block-create-block-slider {
-  background-color: #21759b;
-  color: #fff;
-  padding: 2px;
+/*-------------------------------------------------------*/
+/* Slider
+/*-------------------------------------------------------*/
+:root .swiper {
+  --swiper-theme-color: #686868;
+}
+
+.swiper-container {
+  overflow: hidden;
+}
+
+.wp-block-dev-slider .swiper-pagination {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin-top: 32px;
+  bottom: 0 !important;
+}
+.wp-block-dev-slider .swiper-pagination .swiper-pagination-bullet {
+  --swiper-pagination-bullet-width: 10px;
+  --swiper-pagination-bullet-height: 10px;
+  --swiper-pagination-bullet-horizontal-gap: 5px;
+  --swiper-theme-color: #686868;
+  transition: background ease 0.2s;
+}
+.wp-block-dev-slider .swiper-pagination .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):hover {
+  opacity: 1;
+}
+
+.swiper-navigation-button {
+  background-color: transparent;
+  border: 0;
+  --swiper-navigation-size: 24px;
+  --swiper-navigation-color: red;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

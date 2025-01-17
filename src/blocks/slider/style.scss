@@ -1,12 +1,44 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+// Variables & Mixins
+@import "../../../assets/css/base/_mixins.scss";
 
-.wp-block-create-block-slider {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+/*-------------------------------------------------------*/
+/* Slider
+/*-------------------------------------------------------*/
+:root {
+  .swiper {
+    --swiper-theme-color: #686868;
+  }
+}
+
+.swiper-container {
+  overflow: hidden;
+}
+
+// Pagination
+.wp-block-dev-slider .swiper-pagination {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin-top: 32px;
+  bottom: 0 !important;
+
+  .swiper-pagination-bullet {
+    --swiper-pagination-bullet-width: 10px;
+    --swiper-pagination-bullet-height: 10px;
+    --swiper-pagination-bullet-horizontal-gap: 5px;
+    --swiper-theme-color: #686868;
+    transition: background ease 0.2s;
+
+    &:not(.swiper-pagination-bullet-active):hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Navigation
+.swiper-navigation-button {
+  background-color: transparent;
+  border: 0;
+  --swiper-navigation-size: 24px;
+  --swiper-navigation-color: red;
 }

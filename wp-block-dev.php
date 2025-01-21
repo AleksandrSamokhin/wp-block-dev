@@ -94,6 +94,7 @@ if ( ! class_exists( 'WPBlockDev' ) ) :
 		private function includes() {
 			require_once WP_BLOCK_DEV_PLUGIN_DIR . 'includes/class-wp-block-dev-register-blocks.php';
 			require_once WP_BLOCK_DEV_PLUGIN_DIR . 'includes/class-wp-block-dev-block-assets.php';
+			require_once WP_BLOCK_DEV_PLUGIN_DIR . 'includes/class-wp-block-dev-properties-cpt.php';
 		}
 
 	}

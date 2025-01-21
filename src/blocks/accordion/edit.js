@@ -49,7 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
       <p {...useBlockProps()}>
         {attributes.title && attributes.title}
-        {__("Accordion – hello from the editor!", "accordion")}
+        <h1>{__("Accordion – hello from the editor!", "accordion")}</h1>
       </p>
     </>
   )

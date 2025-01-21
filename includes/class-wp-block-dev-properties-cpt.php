@@ -202,6 +202,8 @@ class WPBlockDev_Properties_CPT {
 
 		if (isset($_POST['location_taxonomy_image'])) {
 			update_term_meta($term_id, 'location_taxonomy_image_id', absint($_POST['location_taxonomy_image']));
+		} else {
+			delete_term_meta($term_id, 'location_taxonomy_image_id');
 		}
 	}
 

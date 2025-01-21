@@ -40,8 +40,14 @@ class WPBlockDev_Properties_CPT {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
+		
+		// Add new hooks for taxonomy image field
+		add_action( 'property_location_add_form_fields', array( $this, 'add_location_taxonomy_image_field' ) );
+		add_action( 'property_location_edit_form_fields', array( $this, 'edit_location_taxonomy_image_field' ) );
+		add_action( 'created_property_location', array( $this, 'save_location_taxonomy_image' ) );
+		add_action( 'edited_property_location', array( $this, 'save_location_taxonomy_image' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'load_media_files' ) );
 	}
-
 
 	/**
 	 * Register post type
@@ -121,6 +127,82 @@ class WPBlockDev_Properties_CPT {
     
     register_taxonomy( 'property_location', array('property'), $tax_args );
 
+	}
+
+	/**
+	 * Load media files needed for image uploader
+	 */
+	public function load_media_files() {
+		wp_enqueue_media();
+		wp_enqueue_script(
+			'location-taxonomy-image',
+			plugins_url( '../assets/js/location-taxonomy-image.js', __FILE__ ),
+			array( 'jquery' ),
+			'1.0.0',
+			true
+		);
+	}
+
+	/**
+	 * Add image field to taxonomy add form
+	 */
+	public function add_location_taxonomy_image_field() {
+		?>
+		<div class="form-field term-image-wrap">
+			<?php wp_nonce_field('location_taxonomy_image_nonce', 'location_taxonomy_image_nonce'); ?>
+			<label for="location-taxonomy-image"><?php esc_html_e( 'Image', 'wp-block-dev' ); ?></label>
+			<input type="hidden" id="location-taxonomy-image" name="location_taxonomy_image" class="custom_media_url" value="">
+			<div id="location-taxonomy-image-wrapper" style="max-width:300px;"></div>
+			<p>
+				<input type="button" class="button button-secondary location_taxonomy_media_button" id="location_taxonomy_media_button" name="location_taxonomy_media_button" value="<?php esc_attr_e( 'Add Image', 'wp-block-dev' ); ?>">
+			</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Add image field to taxonomy edit form
+	 */
+	public function edit_location_taxonomy_image_field( $term ) {
+		$image_id = get_term_meta( $term->term_id, 'location_taxonomy_image_id', true );
+		?>
+		<tr class="form-field term-image-wrap">
+			<th scope="row"><label for="location-taxonomy-image"><?php esc_html_e( 'Image', 'wp-block-dev' ); ?></label></th>
+			<td>
+				<?php wp_nonce_field('location_taxonomy_image_nonce', 'location_taxonomy_image_nonce'); ?>
+				<input type="hidden" id="location-taxonomy-image" name="location_taxonomy_image" value="<?php echo esc_attr( $image_id ); ?>">
+				<div id="location-taxonomy-image-wrapper" style="max-width:300px;">
+				<?php if ( $image_id ) : ?>
+					<?php echo wp_get_attachment_image( absint($image_id), 'thumbnail' ); ?>
+				<?php endif; ?>
+				</div>
+				<p>
+					<input type="button" class="button button-secondary location_taxonomy_media_button" id="location_taxonomy_media_button" name="location_taxonomy_media_button" value="<?php esc_attr_e( 'Add Image', 'wp-block-dev' ); ?>">
+					<input type="button" class="button button-secondary location_taxonomy_media_remove" id="location_taxonomy_media_remove" name="location_taxonomy_media_remove" value="<?php esc_attr_e( 'Remove Image', 'wp-block-dev' ); ?>" <?php echo !$image_id ? 'style="display:none;"' : ''; ?> />
+				</p>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Save taxonomy image
+	 */
+	public function save_location_taxonomy_image( $term_id ) {
+		// Verify nonce
+		if (!isset($_POST['location_taxonomy_image_nonce']) || 
+			!wp_verify_nonce($_POST['location_taxonomy_image_nonce'], 'location_taxonomy_image_nonce')) {
+			return;
+		}
+
+		// Check if user has permissions
+		if (!current_user_can('manage_categories')) {
+			return;
+		}
+
+		if (isset($_POST['location_taxonomy_image'])) {
+			update_term_meta($term_id, 'location_taxonomy_image_id', absint($_POST['location_taxonomy_image']));
+		}
 	}
 
 }

@@ -66,6 +66,7 @@ class WPBlockDev_Register_Blocks {
 		$this->register_block_type( 'accordion' );
 		$this->register_block_type( 'slider' );
 		$this->register_block_type( 'slider/slide' );
+		$this->register_block_type( 'term-query' );
 	}
 
 }

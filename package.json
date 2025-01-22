@@ -24,6 +24,7 @@
     "@wordpress/scripts": "^30.8.1"
   },
   "dependencies": {
+    "@wordpress/icons": "^10.16.0",
     "classnames": "^2.5.1",
     "swiper": "^11.2.0"
   }

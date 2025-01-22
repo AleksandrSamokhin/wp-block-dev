@@ -6,7 +6,44 @@
   "title": "Term Query",
   "category": "wp-block-dev-category",
   "description": "Term Query block.",
-  "attributes": {},
+  "attributes": {
+    "postToShow": {
+      "type": "number",
+      "default": 3
+    },
+    "order": {
+      "type": "string",
+      "default": "desc"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
+    },
+    "displayCount": {
+      "type": "boolean",
+      "default": true
+    },
+    "displayTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "displayPagination": {
+      "type": "boolean",
+      "default": true
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "columnsGap": {
+      "type": "number",
+      "default": 30
+    },
+    "rowsGap": {
+      "type": "number",
+      "default": 30
+    }
+  },
   "supports": {
     "html": false,
     "align": [

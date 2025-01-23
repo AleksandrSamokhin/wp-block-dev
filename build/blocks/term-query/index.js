@@ -63,7 +63,7 @@ function Edit({
   setAttributes
 }) {
   const {
-    postToShow,
+    postsToShow,
     order,
     orderBy,
     columns,
@@ -85,9 +85,9 @@ function Edit({
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Term Query settings", "wp-block-dev"),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Number of Terms", "wp-block-dev"),
-          value: postToShow,
+          value: postsToShow,
           onChange: value => setAttributes({
-            postToShow: value
+            postsToShow: value
           }),
           min: 1,
           max: 20,
@@ -303,7 +303,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wp-block-dev/term-query","version":"0.1.0","title":"Term Query","category":"wp-block-dev-category","description":"Term Query block.","attributes":{"postToShow":{"type":"number","default":3},"order":{"type":"string","default":"desc"},"orderBy":{"type":"string","default":"date"},"displayCount":{"type":"boolean","default":true},"displayTitle":{"type":"boolean","default":true},"displayPagination":{"type":"boolean","default":true},"columns":{"type":"number","default":3},"columnsGap":{"type":"number","default":30},"rowsGap":{"type":"number","default":30}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"wp-block-dev","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wp-block-dev/term-query","version":"0.1.0","title":"Term Query","category":"wp-block-dev-category","description":"Term Query block.","attributes":{"postsToShow":{"type":"number","default":3},"order":{"type":"string","default":"desc"},"orderBy":{"type":"string","default":"date"},"displayCount":{"type":"boolean","default":true},"displayTitle":{"type":"boolean","default":true},"displayPagination":{"type":"boolean","default":true},"columns":{"type":"number","default":3},"columnsGap":{"type":"number","default":30},"rowsGap":{"type":"number","default":30}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"wp-block-dev","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ })
 

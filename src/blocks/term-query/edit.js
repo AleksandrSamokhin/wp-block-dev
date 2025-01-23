@@ -7,7 +7,7 @@ import { PanelBody, ToggleControl, RangeControl, SelectControl } from "@wordpres
 import ServerSideRender from "@wordpress/server-side-render"
 
 export default function Edit({ attributes, setAttributes }) {
-  const { postToShow, order, orderBy, columns, columnsGap, rowsGap, displayTitle, displayCount, displayPagination } =
+  const { postsToShow, order, orderBy, columns, columnsGap, rowsGap, displayTitle, displayCount, displayPagination } =
     attributes
 
   const blockProps = useBlockProps({
@@ -23,8 +23,8 @@ export default function Edit({ attributes, setAttributes }) {
         <PanelBody title={__("Term Query settings", "wp-block-dev")}>
           <RangeControl
             label={__("Number of Terms", "wp-block-dev")}
-            value={postToShow}
-            onChange={value => setAttributes({ postToShow: value })}
+            value={postsToShow}
+            onChange={value => setAttributes({ postsToShow: value })}
             min={1}
             max={20}
             __nextHasNoMarginBottom={true}

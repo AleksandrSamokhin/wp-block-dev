@@ -13,7 +13,47 @@ if ( $attributes['columns'] ) {
 	$wrapper_classes .= ' columns-' . $attributes['columns'];
 }
 
+$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+
+$args = array(
+	'taxonomy' => 'property_location',
+	'number' => absint( $posts_to_show ),
+	'order' => esc_html( $order ),
+	'orderby' => esc_html( $order_by ),
+	'hide_empty' => false,
+	'offset' => ( $paged - 1 ) * $posts_to_show,
+);
+
+$term_query = new WP_Term_Query( $args );
+$terms = $term_query->get_terms();
+
+$total_terms = wp_count_terms($args['taxonomy'], array( 'hide_empty' => false ));
+$total_pages = ceil( $total_terms / $posts_to_show );
+
+if (empty($terms)) {
+	return '';
+}
+
+
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => esc_attr( $wrapper_classes ) ) ); ?>>
+	<?php foreach ($terms as $term) : ?>
+		<?php $image_id = get_term_meta( $term->term_id, 'location_taxonomy_image', true );
+			if ($image_id) {
+				$image = wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'wp-block-dev-term-query__image' ) );
+
+				if ($image) {
+					echo '<a href="' . esc_url( get_term_link( $term ) ) . '">';
+					echo $image;
+					echo '<span class="wp-block-dev-term-query__overlay" style="background: linear-gradient(0deg, rgb(2, 6, 23) 0%, rgba(0,0,0,0) 100%);"></span>';
+					echo '</a>';
+				}
+			}
+
+		?>
+		<article class="wp-block-dev-term-query__term">
+			<span><?php echo esc_html( $term->name ); ?></span>
+		</article>
+	<?php endforeach; ?>
 	<?php esc_html_e( 'Term Query – hello from a dynamic block!', 'term-query' ); ?>
 </div>

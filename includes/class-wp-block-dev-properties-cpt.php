@@ -164,7 +164,7 @@ class WPBlockDev_Properties_CPT {
 	 * Add image field to taxonomy edit form
 	 */
 	public function edit_location_taxonomy_image_field( $term ) {
-		$image_id = get_term_meta( $term->term_id, 'location_taxonomy_image_id', true );
+		$image_id = get_term_meta( $term->term_id, 'location_taxonomy_image', true );
 		?>
 		<tr class="form-field term-image-wrap">
 			<th scope="row"><label for="location-taxonomy-image"><?php esc_html_e( 'Image', 'wp-block-dev' ); ?></label></th>
@@ -201,9 +201,9 @@ class WPBlockDev_Properties_CPT {
 		}
 
 		if (isset($_POST['location_taxonomy_image'])) {
-			update_term_meta($term_id, 'location_taxonomy_image_id', absint($_POST['location_taxonomy_image']));
+			update_term_meta($term_id, 'location_taxonomy_image', absint($_POST['location_taxonomy_image']));
 		} else {
-			delete_term_meta($term_id, 'location_taxonomy_image_id');
+			delete_term_meta($term_id, 'location_taxonomy_image');
 		}
 	}
 

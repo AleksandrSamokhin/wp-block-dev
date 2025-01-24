@@ -38,6 +38,8 @@ if (empty($terms)) {
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => esc_attr( $wrapper_classes ) ) ); ?>>
 	<?php foreach ($terms as $term) : ?>
+		<article class="wp-block-dev-term-query__term">
+
 		<?php $image_id = get_term_meta( $term->term_id, 'location_taxonomy_image', true );
 			if ($image_id) {
 				$image = wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'wp-block-dev-term-query__image' ) );
@@ -49,11 +51,36 @@ if (empty($terms)) {
 					echo '</a>';
 				}
 			}
+			?>
 
-		?>
-		<article class="wp-block-dev-term-query__term">
-			<span><?php echo esc_html( $term->name ); ?></span>
+			<?php if ( !empty( $attributes['displayTitle'] ) ) : ?>
+				<span><?php echo esc_html( $term->name ); ?></span>
+			<?php endif; ?>
+			
+			<?php if ( !empty( $attributes['displayCount'] ) ) : ?>
+				<span>
+					<?php printf( _n( '%s property', '%s properties', $term->count, 'wp-block-dev' ), $term->count ); ?>
+				</span>
+			<?php endif; ?>
+
 		</article>
 	<?php endforeach; ?>
-	<?php esc_html_e( 'Term Query – hello from a dynamic block!', 'term-query' ); ?>
+
+		<?php if ( !empty( $attributes['displayPagination'] ) ) : ?>
+			<?php if ( $total_pages > 1 ) : ?>
+				<nav class="wp-block-dev-term-query__pagination">
+					<?php
+					echo paginate_links( array(
+						'base' => get_pagenum_link(1) . '%_%',
+						'format' => 'page/%#%',
+						'current' => $paged,
+						'total' => $total_pages,
+						'prev_text' => esc_html__('&laquo; Previous', 'wp-block-dev'),
+						'next_text' => esc_html__('Next &raquo;', 'wp-block-dev')
+					) );
+					?>
+				</nav>
+			<?php endif; ?>
+		<?php endif; ?>
+
 </div>

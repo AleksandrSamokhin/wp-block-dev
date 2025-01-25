@@ -45,29 +45,34 @@ if (empty($terms)) {
 		<?php foreach ($terms as $term) : ?>
 			<article class="<?php echo esc_attr( $item_classes ); ?>" style="padding-left: calc( <?php echo esc_attr( $attributes['columnsGap'] ); ?>px / 2 ); padding-right: calc( <?php echo esc_attr( $attributes['columnsGap'] ); ?>px / 2 ); margin-bottom: <?php echo esc_attr( $attributes['rowsGap'] ); ?>px;">
 
-			<?php $image_id = get_term_meta( $term->term_id, 'location_taxonomy_image', true );
-				if ($image_id) {
-					$image = wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'wp-block-dev-term-query__image' ) );
+			<div class="wp-block-dev-term-query__item-container">
 
-					if ($image) {
-						echo '<a href="' . esc_url( get_term_link( $term ) ) . '">';
-						echo $image;
-						echo '<span class="wp-block-dev-term-query__overlay" style="background: linear-gradient(0deg, rgb(2, 6, 23) 0%, rgba(0,0,0,0) 100%);"></span>';
-						echo '</a>';
+				<?php $image_id = get_term_meta( $term->term_id, 'location_taxonomy_image', true );
+					if ($image_id) {
+						$image = wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'wp-block-dev-term-query__image' ) );
+
+						if ($image) {
+							echo '<a href="' . esc_url( get_term_link( $term ) ) . '" class="wp-block-dev-term-query__image-link" >';
+							echo $image;
+							echo '<span class="wp-block-dev-term-query__overlay" style="background: linear-gradient(0deg, rgb(2, 6, 23) 0%, rgba(0,0,0,0) 100%);"></span>';
+							echo '</a>';
+						}
 					}
-				}
-				?>
+					?>
+					
+					<div class="wp-block-dev-term-query__title-holder">
+						<?php if ( !empty( $attributes['displayTitle'] ) ) : ?>
+							<span class="wp-block-dev-term-query__title"><?php echo esc_html( $term->name ); ?></span>
+						<?php endif; ?>
+						
+						<?php if ( !empty( $attributes['displayCount'] ) ) : ?>
+							<span class="wp-block-dev-term-query__count">
+								<?php printf( _n( '%s property', '%s properties', $term->count, 'wp-block-dev' ), $term->count ); ?>
+							</span>
+						<?php endif; ?>
+					</div>
 
-				<?php if ( !empty( $attributes['displayTitle'] ) ) : ?>
-					<span><?php echo esc_html( $term->name ); ?></span>
-				<?php endif; ?>
-				
-				<?php if ( !empty( $attributes['displayCount'] ) ) : ?>
-					<span>
-						<?php printf( _n( '%s property', '%s properties', $term->count, 'wp-block-dev' ), $term->count ); ?>
-					</span>
-				<?php endif; ?>
-
+				</div>
 			</article>
 		<?php endforeach; ?>
 

@@ -1,4 +1,5 @@
 import "./style.scss"
+import "./editor.scss"
 
 import { registerBlockType } from "@wordpress/blocks"
 import { loop as icon } from "@wordpress/icons"

@@ -1,9 +1,31 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.wp-block-dev-term-query__image-link {
+  pointer-events: none;
+}
 
-.wp-block-create-block-term-query {
-	border: 1px dotted #f00;
+.wp-block-dev-term-query-grid__row {
+  display: grid;
+
+  .wp-block-dev-term-query__image {
+    height: 100%;
+  }
+}
+
+.columns-6 .wp-block-dev-term-query-grid__row {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.columns-5 .wp-block-dev-term-query-grid__row {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.columns-4 .wp-block-dev-term-query-grid__row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.columns-3 .wp-block-dev-term-query-grid__row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.columns-2 .wp-block-dev-term-query-grid__row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }

@@ -69,6 +69,13 @@ class WPBlockDev_Block_Assets {
 			return $block_content;
 		}
 
+		wp_register_style(
+			'wp-block-dev-grid',
+			WP_BLOCK_DEV_PLUGIN_URL . 'assets/css/grid.min.css',
+			array(),
+			WP_BLOCK_DEV_VERSION
+		);
+
 		if ( 'wp-block-dev/slider' === $block['blockName'] ) {
 			$asset_file = $this->get_asset_file( 'build/js/swiper/index' );
 			wp_enqueue_script(
@@ -82,6 +89,11 @@ class WPBlockDev_Block_Assets {
 			wp_enqueue_style( 'wp-block-dev-swiper', WP_BLOCK_DEV_PLUGIN_URL . 'build/js/swiper/index.css', array(), $asset_file['version'] );
 
 		}
+
+		if ( 'wp-block-dev/term-query' === $block['blockName'] ) {
+			wp_enqueue_style(  'wp-block-dev-grid' );
+		}
+
 
 		return $block_content;
 

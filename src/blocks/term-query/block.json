@@ -7,6 +7,9 @@
   "category": "wp-block-dev-category",
   "description": "Term Query block.",
   "attributes": {
+    "align": {
+      "type": "string"
+    },
     "postsToShow": {
       "type": "number",
       "default": 3

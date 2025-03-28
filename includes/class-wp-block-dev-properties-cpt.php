@@ -40,6 +40,8 @@ class WPBlockDev_Properties_CPT {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
+
+		add_filter( 'block_bindings_source_value', array( $this, 'format_currency' ), 10, 5 );
 		
 		// Add new hooks for taxonomy image field
 		add_action( 'property_location_add_form_fields', array( $this, 'add_location_taxonomy_image_field' ) );
@@ -127,6 +129,52 @@ class WPBlockDev_Properties_CPT {
     
     register_taxonomy( 'property_location', array('property'), $tax_args );
 
+		// Register post meta
+		register_post_meta( 'property', 'price', [
+			'label' => esc_html__( 'Price', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+		register_post_meta( 'property', 'bedrooms', [
+			'label' => esc_html__( 'Bedrooms', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+		register_post_meta( 'property', 'bathrooms', [
+			'label' => esc_html__( 'Bathrooms', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+		register_post_meta( 'property', 'area_size', [
+			'label' => esc_html__( 'Area Size', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+	}
+
+	/**
+	 * Format currency
+	 */
+	public function format_currency( $value, $name, $args, $block, $attribute_name ) {
+		$key = $args['key'] ?? null;
+		if ( $key === 'price' ) {
+			return '$' . number_format((float)$value, 0, '.', ',');
+		} elseif ( $key === 'area_size' ) {
+			return number_format((float)$value, 0, '.', ',') . esc_html__(' Sq. Ft.', 'wp-block-dev');
+		}
+		return $value;
 	}
 
 	/**

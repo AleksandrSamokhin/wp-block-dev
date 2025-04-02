@@ -162,6 +162,38 @@ class WPBlockDev_Properties_CPT {
 			'sanitize_callback' => 'wp_filter_nohtml_kses'
 		] );
 
+		register_post_meta( 'property', 'address', [
+			'label' => esc_html__( 'Address', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+		register_post_meta( 'property', 'type', [
+			'label' => esc_html__( 'Type', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+		register_post_meta( 'property', 'price_per_sqft', [
+			'label' => esc_html__( 'Price per sq ft', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
+		register_post_meta( 'property', 'year_built', [
+			'label' => esc_html__( 'Year built', 'deoblocks' ),
+			'show_in_rest' => true,
+			'single' => true,
+			'type' => 'string',
+			'sanitize_callback' => 'wp_filter_nohtml_kses'
+		] );
+
 	}
 
 	/**
@@ -169,9 +201,12 @@ class WPBlockDev_Properties_CPT {
 	 */
 	public function format_currency( $value, $name, $args, $block, $attribute_name ) {
 		$key = $args['key'] ?? null;
-		if ( $key === 'price' ) {
+		if ( $key === 'price' || $key === 'price_per_sqft' ) {
 			return '$' . number_format((float)$value, 0, '.', ',');
 		} elseif ( $key === 'area_size' ) {
+			if ( is_singular( 'property' ) ) {
+				return number_format((float)$value, 0, '.', ',');
+			}
 			return number_format((float)$value, 0, '.', ',') . esc_html__(' Sq. Ft.', 'wp-block-dev');
 		}
 		return $value;
